@@ -1,0 +1,10 @@
+Package: rsyncrosimAssist
+Type: Package
+Title: This package assist in the use of the the rsyncrosim package
+Version: 0.1.0
+Author: Valentin Lucet
+Maintainer: Valentin Lucet <valentin.lucet@gmail.com>
+Description: This package compiles a bunch of helping functions for the use
+    of the rsyncrosim package
+Encoding: UTF-8
+LazyData: true
