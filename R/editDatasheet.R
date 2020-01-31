@@ -9,8 +9,8 @@ editDatasheet <- function(datasheetName, # Name of datasheet
                           argumentList, # Columns as a list
                           saveSheet = T, # Saving the sheets or not, default to yes
                           erase = F,
-                          save_as_CSV=F,
-                          CSV_folder=NULL# Erase the datasheet prior to filling it
+                          export=F,
+                          datasheetFolder=NULL# Erase the datasheet prior to filling it
 ){
   
   # Get current datasheet and turn to list

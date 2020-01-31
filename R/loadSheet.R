@@ -4,7 +4,10 @@
 #'
 #' @export
 
-loadSheet <- function (sheetname, proj_or_sce, path = getwd(), params = NULL) 
+loadSheet <- function (datasheetName, 
+                       ssimObject, 
+                       datasheetFolder = getwd(), 
+                       params = NULL) 
 {
   if (!(is.null(params))) {
     if (is.list(params)) {
