@@ -6,7 +6,7 @@ Author: Valentin Lucet
 Maintainer: Valentin Lucet <valentin.lucet@gmail.com>
 Description: This package compiles a bunch of helping functions for the use
     of the rsyncrosim package
-Imports: rsyncrosim
+Imports: rsyncrosim, RSQLite
 License: TBD
 Encoding: UTF-8
 LazyData: true
