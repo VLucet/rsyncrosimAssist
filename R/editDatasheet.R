@@ -1,4 +1,8 @@
-## Allows to edit a datasheet 
+#' Allows to edit a datasheet from a given library
+#'
+#' @description This function wraps saveDatasheet() and datasheet()
+#'
+#' @export
 
 editDatasheet <- function(datasheetName, # Name of datasheet
                           ssimObject, # Project or library

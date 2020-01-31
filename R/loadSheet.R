@@ -1,5 +1,8 @@
-# Loads a datasheet from csv and saves it
-# wrapper for `savedatasheet` function
+#' Allows to edit a datasheet from a given library
+#'
+#' @description This function wraps saveDatasheet() and datasheet()
+#'
+#' @export
 
 loadSheet <- function (sheetname, proj_or_sce, path = getwd(), params = NULL) 
 {
