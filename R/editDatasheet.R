@@ -47,8 +47,9 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   }
   
   if(export){
-    write.csv(as.data.frame(datasheetTemp), paste0(CSV_folder,datasheetName,".csv"), row.names = FALSE)
-    print(paste0("Datasheet ", datasheetName, " saved as CSV in ", CSV_folder))
+    write.csv(as.data.frame(datasheetTemp), 
+              paste0(datasheetFolder,datasheetName,".csv"), row.names = FALSE)
+    print(paste0("Datasheet ", datasheetName, " saved as CSV in ", datasheetFolder))
   }
 
 }
