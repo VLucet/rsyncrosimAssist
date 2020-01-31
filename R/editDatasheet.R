@@ -35,7 +35,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     datasheetTemp[argument] <- argumentList[argument]
   }
   
-  print(datasheetTemp)
+  #print(datasheetTemp)
   # Remove empty
   datasheetTemp <- datasheetTemp[c(which(as.vector(lapply(datasheetTemp, FUN=length) != 0)))]
   
