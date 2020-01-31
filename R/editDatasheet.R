@@ -8,9 +8,9 @@ editDatasheet <- function(datasheetName, # Name of datasheet
                           ssimObject, # Project or library
                           argumentList, # Columns as a list
                           saveSheet = T, # Saving the sheets or not, default to yes
-                          erase = F,
-                          export=F,
-                          datasheetFolder=NULL# Erase the datasheet prior to filling it
+                          erase = F, # Erase first?
+                          export=F, # Save Csv
+                          datasheetFolder=NULL # Erase the datasheet prior to filling it
 ){
   
   # Get current datasheet and turn to list
@@ -46,7 +46,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
   }
   
-  if(save_as_CSV){
+  if(export){
     write.csv(as.data.frame(datasheetTemp), paste0(CSV_folder,datasheetName,".csv"), row.names = FALSE)
     print(paste0("Datasheet ", datasheetName, " saved as CSV in ", CSV_folder))
   }

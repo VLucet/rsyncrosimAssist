@@ -4,10 +4,10 @@
 #'
 #' @export
 
-loadSheet <- function (datasheetName, 
-                       ssimObject, 
-                       datasheetFolder = getwd(), 
-                       params = NULL) 
+loadSheet <- function (datasheetName, # Name of datasheet
+                       ssimObject, # Takes on a object
+                       datasheetFolder = getwd(), # Where csvs are saved
+                       params = NULL) # TODO to review if needed
 {
   if (!(is.null(params))) {
     if (is.list(params)) {
