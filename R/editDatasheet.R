@@ -31,7 +31,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   
   # Fill datasheet
   for (argument in names(argumentList)){
-    print(argument)
+    #print(argument)
     datasheetTemp[argument] <- argumentList[argument]
   }
   
@@ -43,9 +43,12 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   if (saveSheet){
     saveDatasheet(ssimObject = ssimObject, name = datasheetName, 
                   data = as.data.frame(datasheetTemp))
+    print(paste0("Datasheet ", datasheetName, " saved in Library."))
   }
   
   if(save_as_CSV){
     write.csv(as.data.frame(datasheetTemp), paste0(CSV_folder,datasheetName,".csv"), row.names = FALSE)
+    print(paste0("Datasheet ", datasheetName, " saved as CSV in ", CSV_folder))
   }
+
 }

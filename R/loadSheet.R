@@ -20,7 +20,7 @@ loadSheet <- function (sheetname, proj_or_sce, path = getwd(), params = NULL)
   }
   saved_message <- saveDatasheet(proj_or_sce, mySheet, sheetname)
   if (saved_message[1] == "saved") {
-    print(paste0(sheetname, " Saved"))
+    print(paste0(sheetname, " saved in Library."))
   }
   else {
     print(saved_message)
