@@ -46,6 +46,6 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   }
   
   if(save_as_CSV){
-    write.csv(as.data.frame(datasheetTemp), paste0(CSV_folder,datasheetName))
+    write.csv(as.data.frame(datasheetTemp), paste0(CSV_folder,datasheetName,".csv"))
   }
 }
