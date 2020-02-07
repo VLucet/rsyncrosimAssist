@@ -4,7 +4,7 @@
 #'
 #' @export
 
-loadSheet <- function (datasheetName, # Name of datasheet
+loadDatasheet <- function (datasheetName, # Name of datasheet
                        ssimObject, # Takes on a object
                        datasheetFolder = getwd(), # Where csvs are saved
                        params = NULL) # TODO to review if needed
