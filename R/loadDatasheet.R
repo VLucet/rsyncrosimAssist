@@ -23,7 +23,7 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
   }
   saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
   if (saved_message[1] == "saved") {
-    print(paste0(sheetname, " saved in Library."))
+    print(paste0(datasheetName, " saved in Library."))
   }
   else {
     print(saved_message)
