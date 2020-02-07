@@ -55,9 +55,16 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   
   # Save to CSV
   if(export){
+  
+    if(is.null(tag)){
+      datasheetFileName <- datasheetName
+    } else {
+      datasheetFileName <- paste0(datasheetName, "_", tag)
+    }
+    
     write.csv(as.data.frame(datasheetTemp), 
-              paste0(datasheetFolder, datasheetName,".csv"), row.names = FALSE)
-    print(paste0("Datasheet ", datasheetName, " saved as CSV in ", datasheetFolder))
+              paste0(datasheetFolder, datasheetFileName,".csv"), row.names = FALSE)
+    print(paste0("Datasheet ", datasheetFileName, " saved as CSV in ", datasheetFolder))
   }
   
 }
