@@ -19,13 +19,8 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
   }
   # Otherwise, load from folder
   else {
-    mySheet <- tryCatch({
-      read.csv(paste0(datasheetFolder, datasheetName, ".csv"), 
-               header = T)
-    }, error = function(e) {
-      paste0("Error: ", e, " // Datasheet file not present in ", datasheetFolder)
-      stop()
-    })
+    mySheet <- read.csv(paste0(datasheetFolder, datasheetName, ".csv"), header = T)
+    # paste0("Error: ", e, " // Datasheet file not present in ", datasheetFolder)
     saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
     if (saved_message[1] == "saved") {
       print(paste0(datasheetName, " saved in Library."))
