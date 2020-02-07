@@ -5,15 +5,16 @@
 #' @export
 
 editDatasheet <- function(datasheetName, # Name of datasheet
+                          tag, # the tag for parameterization
                           ssimObject, # Project or library
-                          argumentList, # Columns as a list
+                          argumentList = NULL, # Columns as a list
                           saveSheet = T, # Saving the sheets or not, default to yes
                           erase = F, # Erase first?
-                          export=F, # Save Csv
+                          export = F, # Save Csv
                           datasheetFolder=NULL # Erase the datasheet prior to filling it
 ){
   
-  # Get current datasheet and turn to list
+  # Get current datasheet
   datasheetTemp <- rsyncrosim::datasheet(ssimObject, datasheetName, optional = T)
   
   # Erase current contents?
@@ -25,21 +26,25 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   datasheetTemp <- as.list(datasheetTemp)
   
   # Check validity of arguments 
-  if (sum(!(names(argumentList) %in% names(datasheetTemp))) == 1){
-    stop("Arguments names not matching datasheet header / ", 
-         "Rank of unmatched argument is ", 
-         which((names(argumentList) %in% names(datasheetTemp))==F))
+  if (!is.null(argumentList)){
+    
+    if (sum(!(names(argumentList) %in% names(datasheetTemp))) == 1){
+      stop("Arguments names not matching datasheet header / ", 
+           "Rank of unmatched argument is ", 
+           which((names(argumentList) %in% names(datasheetTemp))==F))
+    }
+    
+    # Fill datasheet
+    for (argument in names(argumentList)){
+      #print(argument)
+      datasheetTemp[argument] <- argumentList[argument]
+    }
+   
+    #print(datasheetTemp)
+    # Remove empty
+    datasheetTemp <- datasheetTemp[c(which(as.vector(lapply(datasheetTemp, FUN=length) != 0)))]
+     
   }
-  
-  # Fill datasheet
-  for (argument in names(argumentList)){
-    #print(argument)
-    datasheetTemp[argument] <- argumentList[argument]
-  }
-  
-  #print(datasheetTemp)
-  # Remove empty
-  datasheetTemp <- datasheetTemp[c(which(as.vector(lapply(datasheetTemp, FUN=length) != 0)))]
   
   # Save datasheet
   if (saveSheet){
@@ -48,10 +53,11 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
   }
   
+  # Save to CSV
   if(export){
     write.csv(as.data.frame(datasheetTemp), 
               paste0(datasheetFolder, datasheetName,".csv"), row.names = FALSE)
     print(paste0("Datasheet ", datasheetName, " saved as CSV in ", datasheetFolder))
   }
-
+  
 }
