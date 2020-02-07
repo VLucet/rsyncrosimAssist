@@ -5,29 +5,24 @@
 #' @export
 
 loadDatasheet <- function (datasheetName, # Name of datasheet
-                           ssimObject, # Takes on a object
+                           tag="default",
+                           ssimObject=NULL, # Takes on a object
                            datasheetFolder = getwd(), # Where csvs are saved
-                           params = NULL # TODO to review if needed
 ){
-  # Check if empty parameters (allows to load from list of dataframe)
-  if (!(is.null(params))) {
-    # if not, cast to df
-    if (is.list(params)) {
-      mySheet <- as.data.frame(params)}
-    else {
-      stop("ERROR: parameters not provided as a list")}
+  
+  # Match with tag name
+  datasheetfilename <- paste0(datasheetName, "_", tag)
+  path <- paste0(file.path(paste0(datasheetFolder,datasheetName), paste0(datasheetfilename, ".csv")))
+  mySheet <- read.csv(path, header = T)
+  
+  saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
+  
+  if (saved_message[1] == "saved") {
+    print(paste0(datasheetName, " saved in Library."))
   }
-  # Otherwise, load from folder
+  
   else {
-    mySheet <- read.csv(paste0(datasheetFolder, datasheetName, ".csv"), header = T)
-    # paste0("Error: ", e, " // Datasheet file not present in ", datasheetFolder)
-    saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
-    if (saved_message[1] == "saved") {
-      print(paste0(datasheetName, " saved in Library."))
-    }
-    else {
-      print(saved_message)
-      stop("ERROR: Datasheet could not be loaded. Check path or name, or loading order.")
-    }
+    print(saved_message)
+    stop("ERROR: Datasheet could not be loaded. Check path or name, or loading order.")
   }
 }

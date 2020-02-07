@@ -5,13 +5,13 @@
 #' @export
 
 editDatasheet <- function(datasheetName, # Name of datasheet
-                          tag, # the tag for parameterization
+                          tag=NULL, # the tag for parameterization
                           ssimObject, # Project or library
                           argumentList = NULL, # Columns as a list
                           saveSheet = T, # Saving the sheets or not, default to yes
-                          erase = F, # Erase first?
-                          export = F, # Save Csv
-                          datasheetFolder=NULL # Erase the datasheet prior to filling it
+                          erase = F, # Erase the datasheet prior to filling it
+                          export = F, # Save CSV
+                          datasheetFolder=NULL # Where datasheets are to be exported 
 ){
   
   # Get current datasheet
@@ -48,6 +48,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   
   # Save datasheet
   if (saveSheet){
+    
     saveDatasheet(ssimObject = ssimObject, name = datasheetName, 
                   data = as.data.frame(datasheetTemp))
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
@@ -61,9 +62,11 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     } else {
       datasheetFileName <- paste0(datasheetName, "_", tag)
     }
+
+    dir.create(file.path(datasheetFolder, datasheetName), showWarnings = FALSE)
     
     write.csv(as.data.frame(datasheetTemp), 
-              paste0(datasheetFolder, datasheetFileName,".csv"), row.names = FALSE)
+              paste0(datasheetFolder, datasheetName,"/", datasheetFileName,".csv"), row.names = FALSE)
     print(paste0("Datasheet ", datasheetFileName, " saved as CSV in ", datasheetFolder))
   }
   
