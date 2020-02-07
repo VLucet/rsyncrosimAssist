@@ -14,19 +14,21 @@ editDatasheet <- function(datasheetName, # Name of datasheet
 ){
   
   # Get current datasheet and turn to list
-  datasheetTemp <- as.list(rsyncrosim::datasheet(ssimObject, datasheetName, optional = T))
+  datasheetTemp <- rsyncrosim::datasheet(ssimObject, datasheetName, optional = T)
   
+  # Erase current contents?
+  if (erase){
+    datasheetTemp <- datasheetTemp[0,]
+  }
+  
+  # Make a list
+  datasheetTemp <- as.list(datasheetTemp)
   
   # Check validity of arguments 
   if (sum(!(names(argumentList) %in% names(datasheetTemp))) == 1){
     stop("Arguments names not matching datasheet header / ", 
          "Rank of unmatched argument is ", 
          which((names(argumentList) %in% names(datasheetTemp))==F))
-  }
-  
-  # Erase current contents?
-  if (erase){
-    datasheetTemp <- datasheetTemp[0,]
   }
   
   # Fill datasheet
