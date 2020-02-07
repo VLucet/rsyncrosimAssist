@@ -5,10 +5,10 @@
 #' @export
 
 loadDatasheet <- function (datasheetName, # Name of datasheet
-                       ssimObject, # Takes on a object
-                       datasheetFolder = getwd(), # Where csvs are saved
-                       params = NULL) # TODO to review if needed
-{
+                           ssimObject, # Takes on a object
+                           datasheetFolder = getwd(), # Where csvs are saved
+                           params = NULL # TODO to review if needed
+){
   if (!(is.null(params))) {
     if (is.list(params)) {
       mySheet <- as.data.frame(params)
@@ -18,10 +18,10 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
     }
   }
   else {
-    mySheet <- read.csv(paste0(path, sheetname, ".csv"), 
+    mySheet <- read.csv(paste0(datasheetFolder, datasheetName, ".csv"), 
                         header = T)
   }
-  saved_message <- saveDatasheet(proj_or_sce, mySheet, sheetname)
+  saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
   if (saved_message[1] == "saved") {
     print(paste0(sheetname, " saved in Library."))
   }
