@@ -22,15 +22,16 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
     tryCatch({
       mySheet <- read.csv(paste0(datasheetFolder, datasheetName, ".csv"), 
                           header = T)
-  }, error = function(e) {
-    print(paste0("Error: ", e, " // Datasheet file not present in ", datasheetFolder))
-  })
-  saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
-  if (saved_message[1] == "saved") {
-    print(paste0(datasheetName, " saved in Library."))
-  }
-  else {
-    print(saved_message)
-    stop("ERROR: Datasheet could not be loaded. Check path or name, or loading order.")
+    }, error = function(e) {
+      print(paste0("Error: ", e, " // Datasheet file not present in ", datasheetFolder))
+    })
+    saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
+    if (saved_message[1] == "saved") {
+      print(paste0(datasheetName, " saved in Library."))
+    }
+    else {
+      print(saved_message)
+      stop("ERROR: Datasheet could not be loaded. Check path or name, or loading order.")
+    }
   }
 }
