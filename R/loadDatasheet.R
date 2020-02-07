@@ -7,7 +7,7 @@
 loadDatasheet <- function (datasheetName, # Name of datasheet
                            tag="default",
                            ssimObject=NULL, # Takes on a object
-                           datasheetFolder = getwd(), # Where csvs are saved
+                           datasheetFolder = getwd() # Where csvs are saved
 ){
   
   # Match with tag name
