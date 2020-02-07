@@ -19,9 +19,9 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
   }
   # Otherwise, load from folder
   else {
-    tryCatch({
-      mySheet <- read.csv(paste0(datasheetFolder, datasheetName, ".csv"), 
-                          header = T)
+    mySheet <- tryCatch({
+      read.csv(paste0(datasheetFolder, datasheetName, ".csv"), 
+               header = T)
     }, error = function(e) {
       stop(paste0("Error: ", e, " // Datasheet file not present in ", datasheetFolder))
     })
