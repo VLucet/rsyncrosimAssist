@@ -6,8 +6,9 @@
 \usage{
 editDatasheet(
   datasheetName,
+  tag = NULL,
   ssimObject,
-  argumentList,
+  argumentList = NULL,
   saveSheet = T,
   erase = F,
   export = F,
