@@ -6,9 +6,9 @@
 \usage{
 loadDatasheet(
   datasheetName,
-  ssimObject,
-  datasheetFolder = getwd(),
-  params = NULL
+  tag = "default",
+  ssimObject = NULL,
+  datasheetFolder = getwd()
 )
 }
 \description{
