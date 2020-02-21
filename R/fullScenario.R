@@ -9,10 +9,10 @@ fullScenario <- function(ssimProject,
                          tag_list){
   
   # Get all the scenario information
-  sce_df <- scenario(ssimObject = ssimProject)[,c("scenarioId", "name")]
+  sce_df <- rsyncrosim::scenario(ssimObject = ssimProject)[,c("scenarioId", "name")]
   
   # Create the full scenario
-  sce_object <- scenario(ssimObject = ssimProject, scenario = scenarioName)
+  sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = scenarioName)
   
   # Get all the scenarios with proper tag, put them into a list of scenarios
   # TODO think about how to extend this list to the S3 system
@@ -21,14 +21,14 @@ fullScenario <- function(ssimProject,
   for (subname in names(tag_list)){
     subID <- sce_df[grepl(pattern = subname, sce_df$name) & 
                       grepl(pattern = tag_list[[subname]], sce_df$name),]$scenarioId
-    sub <- scenario(ssimObject = ssimProject, scenario = subID)
+    sub <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
     sub_list <- c(sub_list, sub)
   }
   
   print(sub_list)
   
   # Then add it as a dependencie
-  dependency(sce_object, sub_list)
+  rsyncrosim::dependency(sce_object, sub_list)
   
   return(sce_object)
   

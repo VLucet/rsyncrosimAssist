@@ -16,7 +16,7 @@ subScenario <- function(ssimProject,
   sce_name <- paste(datasheetName, tag, sep = "_")
   
   # Create the scenario
-  sce_object <- scenario(ssimObject = ssimProject, scenario = sce_name)
+  sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = sce_name)
   
   # Save datasheet in that scenario
   editDatasheet(datasheetName = datasheetName, tag = tag, 
