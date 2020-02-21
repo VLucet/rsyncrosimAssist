@@ -6,10 +6,11 @@
 
 fullScenario <- function(ssimProject, 
                          scenarioName, 
-                         tag_list){
+                         tag){
   
-  # Get all the scenario information
+  # Get all the sub scenario information
   sce_df <- rsyncrosim::scenario(ssimObject = ssimProject)[,c("scenarioId", "name")]
+  sub_df <- sce_df[mapply(x=sce_df$name, FUN=grepl, pattern="sub"),] # only get sub scenarios
   
   # Create the full scenario
   sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = scenarioName)
@@ -18,18 +19,21 @@ fullScenario <- function(ssimProject,
   # TODO think about how to extend this list to the S3 system
   sub_list <- c()
   
-  # Check if the tag is the same
-  if (length(tag_list) == 1 & is.null(names(tag_list))){
-    # TODO complete this
+  # Matches tag
+  # Check if only a string was given
+  if (length(tag) == 1 & is.null(names(tag))){
+    matches <- mapply(x=sub_df$name, FUN=grepl, pattern=as.character(tag))
+    subID <- sub_df[matches,]$scenarioId
+    sub_list <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
   } else {
-    for (subname in names(tag_list)){
-      subID <- sce_df[grepl(pattern = subname, sce_df$name) & 
-                        grepl(pattern = tag_list[[subname]], sce_df$name),]$scenarioId
+    # Otherwise loop to match the list of tags
+    for (subname in names(tag)){
+      matches <- grepl(pattern = subname, sub_df$name) & grepl(pattern = tag[[subname]], sub_df$name)
+      subID <- sub_df[matches,]$scenarioId
       sub <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
       sub_list <- c(sub_list, sub)
     }
   }
-  print(sub_list)
   
   # Then add it as a dependencie
   rsyncrosim::dependency(sce_object, sub_list)

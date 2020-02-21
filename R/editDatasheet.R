@@ -28,7 +28,8 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   # Check validity of arguments 
   if (!is.null(argumentList)){
     
-    if (sum(!(names(argumentList) %in% names(datasheetTemp))) == 1){
+    if (sum((names(argumentList) %in% names(datasheetTemp))) != length(names(argumentList))){
+      
       stop("Arguments names not matching datasheet header / ", 
            "Rank of unmatched argument is ", 
            which((names(argumentList) %in% names(datasheetTemp))==F))
@@ -48,7 +49,6 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   
   # Save datasheet
   if (saveSheet){
-    
     rsyncrosim::saveDatasheet(ssimObject = ssimObject, name = datasheetName, 
                   data = as.data.frame(datasheetTemp))
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
