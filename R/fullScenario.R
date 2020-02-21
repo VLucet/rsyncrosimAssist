@@ -18,13 +18,17 @@ fullScenario <- function(ssimProject,
   # TODO think about how to extend this list to the S3 system
   sub_list <- c()
   
-  for (subname in names(tag_list)){
-    subID <- sce_df[grepl(pattern = subname, sce_df$name) & 
-                      grepl(pattern = tag_list[[subname]], sce_df$name),]$scenarioId
-    sub <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
-    sub_list <- c(sub_list, sub)
+  # Check if the tag is the same
+  if (length(tag_list) == 1 & is.null(names(tag_list))){
+    # TODO complete this
+  } else {
+    for (subname in names(tag_list)){
+      subID <- sce_df[grepl(pattern = subname, sce_df$name) & 
+                        grepl(pattern = tag_list[[subname]], sce_df$name),]$scenarioId
+      sub <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
+      sub_list <- c(sub_list, sub)
+    }
   }
-  
   print(sub_list)
   
   # Then add it as a dependencie
