@@ -1,6 +1,6 @@
 #' Creates Full Scenario based on a datasheet
 #'
-#' @description This funcstion will create a unique sub scenario based on a given datasheet.
+#' @description This function will create a unique sub scenario based on a given datasheet.
 #'
 #' @export
 

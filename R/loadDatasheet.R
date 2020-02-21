@@ -15,7 +15,7 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
   path <- paste0(file.path(paste0(datasheetFolder,datasheetName), paste0(datasheetfilename, ".csv")))
   mySheet <- read.csv(path, header = T)
   
-  saved_message <- saveDatasheet(ssimObject, mySheet, datasheetName)
+  saved_message <- rsyncrosim::saveDatasheet(ssimObject, mySheet, datasheetName)
   
   if (saved_message[1] == "saved") {
     print(paste0(datasheetName, " saved in Library."))

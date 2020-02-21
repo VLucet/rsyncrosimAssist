@@ -49,7 +49,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   # Save datasheet
   if (saveSheet){
     
-    saveDatasheet(ssimObject = ssimObject, name = datasheetName, 
+    rsyncrosim::saveDatasheet(ssimObject = ssimObject, name = datasheetName, 
                   data = as.data.frame(datasheetTemp))
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
   }

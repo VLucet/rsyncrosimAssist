@@ -15,5 +15,5 @@ subScenario(
 )
 }
 \description{
-This funcstion will create a unique sub scenario based on a given datasheet.
+This function will create a unique sub scenario based on a given datasheet.
 }
