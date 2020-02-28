@@ -66,7 +66,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     dir.create(file.path(datasheetFolder, datasheetName), showWarnings = FALSE)
     
     write.csv(as.data.frame(datasheetTemp), 
-              paste0(datasheetFolder, datasheetName,"/", datasheetFileName,".csv"), row.names = FALSE)
+              file.path(datasheetFolder, datasheetName, past0(datasheetFileName,".csv")), row.names = FALSE)
     print(paste0("Datasheet ", datasheetFileName, " saved as CSV in ", datasheetFolder))
   }
   
