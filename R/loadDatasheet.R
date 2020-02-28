@@ -11,7 +11,12 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
 ){
   
   # Match with tag name
-  datasheetfilename <- paste0(datasheetName, "_", tag)
+  if(is.null(tag)){
+    datasheetFileName <- datasheetName
+  } else {
+    datasheetFileName <- paste0(datasheetName, "_", tag)
+  }
+
   path <- paste0(file.path(paste0(datasheetFolder,datasheetName), paste0(datasheetfilename, ".csv")))
   mySheet <- read.csv(path, header = T)
   
