@@ -10,7 +10,7 @@ subScenario <- function(ssimProject,
                         datasheetParameters, 
                         savesheet=F, 
                         export=T,
-                        datasheetFolder){
+                        datasheetFolder=NULL){
   
   # Make scenario name
   sce_name <- paste(datasheetName, tag, "sub", sep = "_")
