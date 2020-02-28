@@ -19,9 +19,11 @@ subScenario <- function(ssimProject,
   sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = sce_name)
   
   # Save datasheet in that scenario
-  editDatasheet(datasheetName = datasheetName, tag = tag, 
-                ssimObject = sce_object, argumentList = datasheetParameters, 
-                saveSheet = savesheet, export = export, datasheetFolder = datasheetFolder)
+  for (name in datasheetName){
+    editDatasheet(datasheetName = datasheetName, tag = tag, 
+                  ssimObject = sce_object, argumentList = datasheetParameters, 
+                  saveSheet = savesheet, export = export, datasheetFolder = datasheetFolder)
+  }
   
   return(sce_object)
   
