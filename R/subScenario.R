@@ -20,9 +20,9 @@ subScenario <- function(ssimProject,
   
   # Save datasheet in that scenario
   # Can take more than 1
-  for (name in datasheetName){
-    editDatasheet(datasheetName = name, tag = tag, 
-                  ssimObject = sce_object, argumentList = datasheetParameters, 
+  for (id_name in length(datasheetName)){
+    editDatasheet(datasheetName = datasheetName[[id_name]], tag = tag, 
+                  ssimObject = sce_object, argumentList = datasheetParameters[[id_name]], 
                   saveSheet = savesheet, export = export, datasheetFolder = datasheetFolder)
   }
   
