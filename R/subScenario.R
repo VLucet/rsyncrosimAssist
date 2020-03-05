@@ -6,23 +6,31 @@
 
 subScenario <- function(ssimProject,
                         tag = "default", 
-                        datasheetName,
+                        datasheetNames,
                         datasheetParameters, 
                         savesheet=F, 
                         export=F,
                         datasheetFolder=NULL){
   
+  if(length(datasheetNames)==1){
+    datasheetParameters <- list(datasheetParameters)
+    names(datasheetParameters) <- datasheetNames
+  } else{
+    datasheetParameters <- as.list(datasheetParameters)
+  }
+  
   # Make scenario name
-  sce_name <- paste(datasheetName, tag, "sub", sep = "_")
+  sce_name <- paste(paste(sort(datasheetNames), collapse = "_&_"), tag, "sub", sep = "_")
   
   # Create the scenario
   sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = sce_name)
   
   # Save datasheet in that scenario
   # Can take more than 1
-  for (id_name in length(datasheetName)){
-    editDatasheet(datasheetName = datasheetName[[id_name]], tag = tag, 
-                  ssimObject = sce_object, argumentList = datasheetParameters[[id_name]], 
+  for (name in datasheetNames){
+    
+    editDatasheet(datasheetName = name, tag = tag, 
+                  ssimObject = sce_object, argumentList = datasheetParameters[[name]], 
                   saveSheet = savesheet, export = export, datasheetFolder = datasheetFolder)
   }
   

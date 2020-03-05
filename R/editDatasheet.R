@@ -27,7 +27,6 @@ editDatasheet <- function(datasheetName, # Name of datasheet
   
   # Check validity of arguments 
   if (!is.null(argumentList)){
-    
     if (sum((names(argumentList) %in% names(datasheetTemp))) != length(names(argumentList))){
       
       stop("Arguments names not matching datasheet header / ", 
@@ -66,7 +65,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     dir.create(file.path(datasheetFolder, datasheetName), showWarnings = FALSE)
     
     write.csv(as.data.frame(datasheetTemp), 
-              file.path(datasheetFolder, datasheetName, past0(datasheetFileName,".csv")), row.names = FALSE)
+              file.path(datasheetFolder, datasheetName, paste0(datasheetFileName,".csv")), row.names = FALSE)
     print(paste0("Datasheet ", datasheetFileName, " saved as CSV in ", datasheetFolder))
   }
   

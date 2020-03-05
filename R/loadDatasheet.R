@@ -17,7 +17,7 @@ loadDatasheet <- function (datasheetName, # Name of datasheet
     datasheetFileName <- paste0(datasheetName, "_", tag)
   }
 
-  path <- paste0(file.path(paste0(datasheetFolder,datasheetName), paste0(datasheetfilename, ".csv")))
+  path <- paste0(file.path(paste0(datasheetFolder,datasheetName), paste0(datasheetFileName, ".csv")))
   mySheet <- read.csv(path, header = T)
   
   saved_message <- rsyncrosim::saveDatasheet(ssimObject, mySheet, datasheetName)
