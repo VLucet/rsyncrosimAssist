@@ -11,6 +11,7 @@
 #' @param saveSheet (logical) Whether or not to save the datasheet into the ssimObject, default to TRUE.
 #' @param export (logical) Whether or not to export the datasheet to file, default to FALSE.
 #' @param datasheetFolder (character) The path to where to save the datasheet if export is TRUE, default to NULL.
+#' @param merge (logical) Whether or not to merge dependencies, default to FALSE.
 #'
 #' @export
 
@@ -20,7 +21,8 @@ subScenario <- function(ssimProject,
                         datasheetParameters, 
                         saveSheet=F, 
                         export=F,
-                        datasheetFolder=NULL){
+                        datasheetFolder=NULL, 
+                        merge=F){
   
   if(length(datasheetNames)==1){
     datasheetParameters <- list(datasheetParameters)
@@ -42,6 +44,12 @@ subScenario <- function(ssimProject,
     editDatasheet(datasheetName = name, tag = tag, 
                   ssimObject = sce_object, argumentList = datasheetParameters[[name]], 
                   saveSheet = saveSheet, export = export, datasheetFolder = datasheetFolder)
+  }
+  
+  
+  # If merge
+  if(merge){
+    mergeDependencies(sce_object)
   }
   
   return(sce_object)

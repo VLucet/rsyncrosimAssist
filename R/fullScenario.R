@@ -5,14 +5,16 @@
 #' 
 #' @param ssimProject (ssimObject) Syncrosim Project to save to.
 #' @param scenarioName (character) The name of the full scenario.
-#' @param tag (character or character vector) The tag(s) associated with the subscenarios, can be NULL, 
+#' @param tag (character or character vector) The tag(s) associated with the subscenarios, can be NULL,
 #' default to "default".
-#'
+#' @param merge (logical) Whether or not to merge dependencies, default to FALSE.
+#' 
 #' @export
 
 fullScenario <- function(ssimProject, 
                          scenarioName, 
-                         tag){
+                         tag, 
+                         merge=F){
   
   # Get all the sub scenario information
   sce_df <- rsyncrosim::scenario(ssimObject = ssimProject)[,c("scenarioId", "name")]
@@ -41,8 +43,13 @@ fullScenario <- function(ssimProject,
     }
   }
   
-  # Then add it as a dependencie
+  # Then add it as a dependency
   rsyncrosim::dependency(sce_object, sub_list)
+  
+  # If merge
+  if(merge){
+    mergeDependencies(sce_object)
+  }
   
   return(sce_object)
   
