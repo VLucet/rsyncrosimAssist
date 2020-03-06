@@ -7,13 +7,15 @@
 #' @param tag (character) The tag associated with that datasheet, can be NULL, default to "default".
 #' @param ssimObject (ssimObject) Object of the class ssimObject from which to extract and 
 #' @param datasheetFolder (character) The path to where to save the datasheet if export is TRUE, default to NULL.
+#' @param ... Further arguments to be passed onto saveDatasheet()
 #' 
 #' @export
 
 loadDatasheet <- function (datasheetName,
                            tag="default",
-                           ssimObject=NULL, # Takes on a object
-                           datasheetFolder = NULL # Where csvs are saved
+                           ssimObject=NULL,
+                           datasheetFolder = NULL,
+                           ...=NULL
 ){
   
   # Match with tag name
@@ -28,7 +30,7 @@ loadDatasheet <- function (datasheetName,
   mySheet <- read.csv(path, header = T)
   
   # Save the sheet
-  saved_message <- rsyncrosim::saveDatasheet(ssimObject, mySheet, datasheetName)
+  saved_message <- rsyncrosim::saveDatasheet(ssimObject, mySheet, datasheetName, ...)
   
   # Evaluate success
   if (saved_message[1] == "saved") {

@@ -8,13 +8,16 @@
 #' @param tag (character or character vector) The tag(s) associated with the subscenarios, can be NULL,
 #' default to "default".
 #' @param merge (logical) Whether or not to merge dependencies, default to FALSE.
+#' @param ... Further arguments to be passed onto scenario()
 #' 
 #' @export
 
 fullScenario <- function(ssimProject, 
                          scenarioName, 
                          tag, 
-                         merge=F){
+                         merge=F, 
+                         ...
+){
   
   # Get all the sub scenario information
   sce_df <- rsyncrosim::scenario(ssimObject = ssimProject)[,c("scenarioId", "name")]
@@ -32,13 +35,13 @@ fullScenario <- function(ssimProject,
   if (length(tag) == 1 & is.null(names(tag))){
     matches <- mapply(x=sub_df$name, FUN=grepl, pattern=as.character(tag))
     subID <- sub_df[matches,]$scenarioId
-    sub_list <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
+    sub_list <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID, ...)
   } else {
     # Otherwise loop to match the list of tags
     for (subname in names(tag)){
       matches <- grepl(pattern = subname, sub_df$name) & grepl(pattern = tag[[subname]], sub_df$name)
       subID <- sub_df[matches,]$scenarioId
-      sub <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID)
+      sub <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = subID, ...)
       sub_list <- c(sub_list, sub)
     }
   }
@@ -46,10 +49,8 @@ fullScenario <- function(ssimProject,
   # Then add it as a dependency
   rsyncrosim::dependency(sce_object, sub_list)
   
-  # If merge
-  if(merge){
-    mergeDependencies(sce_object)
-  }
+  # Merge or not
+  rsyncrosim::mergeDependencies(sce_object) <- merge
   
   return(sce_object)
   

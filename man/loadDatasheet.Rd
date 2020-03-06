@@ -8,7 +8,8 @@ loadDatasheet(
   datasheetName,
   tag = "default",
   ssimObject = NULL,
-  datasheetFolder = NULL
+  datasheetFolder = NULL,
+  ... = NULL
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ loadDatasheet(
 \item{ssimObject}{(ssimObject) Object of the class ssimObject from which to extract and}
 
 \item{datasheetFolder}{(character) The path to where to save the datasheet if export is TRUE, default to NULL.}
+
+\item{...}{Further arguments to be passed onto saveDatasheet()}
 }
 \description{
 Wraps rsyncrosim::saveDatasheet() to read in a load into library a datasheet directly

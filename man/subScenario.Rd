@@ -11,7 +11,9 @@ subScenario(
   datasheetParameters,
   saveSheet = F,
   export = F,
-  datasheetFolder = NULL
+  datasheetFolder = NULL,
+  merge = F,
+  ...
 )
 }
 \arguments{
@@ -29,6 +31,10 @@ datasheet(s).}
 \item{export}{(logical) Whether or not to export the datasheet to file, default to FALSE.}
 
 \item{datasheetFolder}{(character) The path to where to save the datasheet if export is TRUE, default to NULL.}
+
+\item{merge}{(logical) Whether or not to merge dependencies, default to FALSE.}
+
+\item{...}{Further arguments to be passed onto scenario()}
 }
 \description{
 Wrap around editDatasheet and rsyncrosim::scenario to create a 

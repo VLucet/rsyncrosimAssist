@@ -12,7 +12,8 @@ editDatasheet(
   saveSheet = T,
   erase = F,
   export = F,
-  datasheetFolder = NULL
+  datasheetFolder = NULL,
+  ... = NULL
 )
 }
 \arguments{
@@ -33,6 +34,8 @@ parameters.}
 \item{export}{(logical) Whether or not to export the datasheet to file, default to FALSE.}
 
 \item{datasheetFolder}{(character) The path to where to save the datasheet if export is TRUE, default to NULL.}
+
+\item{...}{Further arguments to be passed onto saveDatasheet()}
 }
 \description{
 Wraps rsyncrosim::saveDatasheet() and rsyncrosim::datasheet() to edit

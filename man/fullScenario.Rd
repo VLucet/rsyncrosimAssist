@@ -4,15 +4,19 @@
 \alias{fullScenario}
 \title{Create Full Scenario based on a set of Sub-Scenario with one or more tag(s)}
 \usage{
-fullScenario(ssimProject, scenarioName, tag)
+fullScenario(ssimProject, scenarioName, tag, merge = F, ...)
 }
 \arguments{
 \item{ssimProject}{(ssimObject) Syncrosim Project to save to.}
 
 \item{scenarioName}{(character) The name of the full scenario.}
 
-\item{tag}{(character or character vector) The tag(s) associated with the subscenarios, can be NULL, 
+\item{tag}{(character or character vector) The tag(s) associated with the subscenarios, can be NULL,
 default to "default".}
+
+\item{merge}{(logical) Whether or not to merge dependencies, default to FALSE.}
+
+\item{...}{Further arguments to be passed onto scenario()}
 }
 \description{
 Wraps around rsncrosim::scenario in order to Assemble a full scenario from 

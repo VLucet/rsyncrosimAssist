@@ -12,6 +12,7 @@
 #' @param export (logical) Whether or not to export the datasheet to file, default to FALSE.
 #' @param datasheetFolder (character) The path to where to save the datasheet if export is TRUE, default to NULL.
 #' @param merge (logical) Whether or not to merge dependencies, default to FALSE.
+#' @param ... Further arguments to be passed onto scenario()
 #'
 #' @export
 
@@ -22,7 +23,9 @@ subScenario <- function(ssimProject,
                         saveSheet=F, 
                         export=F,
                         datasheetFolder=NULL, 
-                        merge=F){
+                        merge=F,
+                        ...
+){
   
   if(length(datasheetNames)==1){
     datasheetParameters <- list(datasheetParameters)
@@ -35,7 +38,7 @@ subScenario <- function(ssimProject,
   sce_name <- paste(paste(sort(datasheetNames), collapse = "_&_"), tag, "sub", sep = "_")
   
   # Create the scenario
-  sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = sce_name)
+  sce_object <- rsyncrosim::scenario(ssimObject = ssimProject, scenario = sce_name, ...)
   
   # Save datasheet in that scenario
   # Can take more than 1
@@ -46,11 +49,8 @@ subScenario <- function(ssimProject,
                   saveSheet = saveSheet, export = export, datasheetFolder = datasheetFolder)
   }
   
-  
-  # If merge
-  if(merge){
-    mergeDependencies(sce_object)
-  }
+  # Merge or not
+  rsyncrosim::mergeDependencies(sce_object) <- merge
   
   return(sce_object)
   

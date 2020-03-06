@@ -13,6 +13,7 @@
 #' @param erase (logical) Whether or not to erase the datasheet first before editing, default to FALSE.
 #' @param export (logical) Whether or not to export the datasheet to file, default to FALSE.
 #' @param datasheetFolder (character) The path to where to save the datasheet if export is TRUE, default to NULL.
+#' @param ... Further arguments to be passed onto saveDatasheet()
 #'
 #' @importFrom utils read.csv write.csv
 #' @export
@@ -24,7 +25,8 @@ editDatasheet <- function(datasheetName,
                           saveSheet = T, 
                           erase = F, 
                           export = F, 
-                          datasheetFolder=NULL
+                          datasheetFolder=NULL, 
+                          ...=NULL
 ){
   
   # Get current datasheet
@@ -60,7 +62,7 @@ editDatasheet <- function(datasheetName,
   # Save datasheet
   if (saveSheet){
     rsyncrosim::saveDatasheet(ssimObject = ssimObject, name = datasheetName, 
-                  data = as.data.frame(datasheetTemp))
+                  data = as.data.frame(datasheetTemp), ...)
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
   }
   
