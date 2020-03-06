@@ -1,6 +1,12 @@
-#' Creates Full Scenario based on a datasheet
+#' Create Full Scenario based on a set of Sub-Scenario with one or more tag(s)
 #'
-#' @description This function will create a unique sub scenario based on a given datasheet.
+#' @description Wraps around rsncrosim::scenario in order to Assemble a full scenario from 
+#' a set of Sub-Scenario with one or more tag(s).
+#' 
+#' @param ssimProject (ssimObject) Syncrosim Project to save to.
+#' @param scenarioName (character) The name of the full scenario.
+#' @param tag (character or character vector) The tag(s) associated with the subscenarios, can be NULL, 
+#' default to "default".
 #'
 #' @export
 

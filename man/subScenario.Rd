@@ -2,18 +2,35 @@
 % Please edit documentation in R/subScenario.R
 \name{subScenario}
 \alias{subScenario}
-\title{Creates Sub-Scenario based on a datasheet}
+\title{Create Sub-Scenario based on one or more datasheet(s)}
 \usage{
 subScenario(
   ssimProject,
   tag = "default",
-  datasheetName,
+  datasheetNames,
   datasheetParameters,
-  savesheet = F,
-  export = T,
-  datasheetFolder
+  saveSheet = F,
+  export = F,
+  datasheetFolder = NULL
 )
 }
+\arguments{
+\item{ssimProject}{(ssimObject) Syncrosim Projectto save to.}
+
+\item{tag}{(character) The tag associated with that datasheet, can be NULL, default to "default".}
+
+\item{datasheetNames}{(character or character vector) The name(s) of the datasheet(s).}
+
+\item{datasheetParameters}{(list or named list) List or named list containing the parameters for the 
+datasheet(s).}
+
+\item{saveSheet}{(logical) Whether or not to save the datasheet into the ssimObject, default to TRUE.}
+
+\item{export}{(logical) Whether or not to export the datasheet to file, default to FALSE.}
+
+\item{datasheetFolder}{(character) The path to where to save the datasheet if export is TRUE, default to NULL.}
+}
 \description{
-This function will create a unique sub scenario based on a given datasheet.
+Wrap around editDatasheet and rsyncrosim::scenario to create a 
+unique sub scenario based on a given datasheet or set of datasheets.
 }

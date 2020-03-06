@@ -1,17 +1,30 @@
-#' Allows to edit a datasheet from a given library
+#' Edit a datasheet
 #'
-#' @description This function wraps saveDatasheet() and datasheet()
+#' @description Wraps rsyncrosim::saveDatasheet() and rsyncrosim::datasheet() to edit
+#' a datasheet in a syncrosim library, save it, and possibly export it to csv.
+#' 
+#' @param datasheetName (character) The name of the datasheet (ex: RunControl).
+#' @param tag (character) The tag associated with that datasheet, can be NULL (is NULL by default).
+#' @param ssimObject (ssimObject) Object of the class ssimObject from which to extract and 
+#' save the datasheet.
+#' @param argumentList (named list or data.frame) A named list or data.frame that contains the datasheet
+#' parameters.
+#' @param saveSheet (logical) Whether or not to save the datasheet into the ssimObject, default to TRUE.
+#' @param erase (logical) Whether or not to erase the datasheet first before editing, default to FALSE.
+#' @param export (logical) Whether or not to export the datasheet to file, default to FALSE.
+#' @param datasheetFolder (character) The path to where to save the datasheet if export is TRUE, default to NULL.
 #'
+#' @importFrom utils read.csv write.csv
 #' @export
 
-editDatasheet <- function(datasheetName, # Name of datasheet
-                          tag=NULL, # the tag for parameterization
-                          ssimObject, # Project or library
-                          argumentList = NULL, # Columns as a list
-                          saveSheet = T, # Saving the sheets or not, default to yes
-                          erase = F, # Erase the datasheet prior to filling it
-                          export = F, # Save CSV
-                          datasheetFolder=NULL # Where datasheets are to be exported 
+editDatasheet <- function(datasheetName, 
+                          tag=NULL, 
+                          ssimObject, 
+                          argumentList = NULL,
+                          saveSheet = T, 
+                          erase = F, 
+                          export = F, 
+                          datasheetFolder=NULL
 ){
   
   # Get current datasheet
@@ -36,11 +49,9 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     
     # Fill datasheet
     for (argument in names(argumentList)){
-      #print(argument)
       datasheetTemp[argument] <- argumentList[argument]
     }
    
-    #print(datasheetTemp)
     # Remove empty
     datasheetTemp <- datasheetTemp[c(which(as.vector(lapply(datasheetTemp, FUN=length) != 0)))]
      
@@ -53,7 +64,7 @@ editDatasheet <- function(datasheetName, # Name of datasheet
     print(paste0("Datasheet ", datasheetName, " saved in Library."))
   }
   
-  # Save to CSV
+  # Save to CSV or not
   if(export){
   
     if(is.null(tag)){

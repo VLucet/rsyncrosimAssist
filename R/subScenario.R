@@ -1,6 +1,16 @@
-#' Creates Sub-Scenario based on a datasheet
+#' Create Sub-Scenario based on one or more datasheet(s)
 #'
-#' @description This function will create a unique sub scenario based on a given datasheet.
+#' @description Wrap around editDatasheet and rsyncrosim::scenario to create a 
+#' unique sub scenario based on a given datasheet or set of datasheets.
+#' 
+#' @param ssimProject (ssimObject) Syncrosim Projectto save to.
+#' @param tag (character) The tag associated with that datasheet, can be NULL, default to "default".
+#' @param datasheetNames (character or character vector) The name(s) of the datasheet(s).
+#' @param datasheetParameters (list or named list) List or named list containing the parameters for the 
+#' datasheet(s).
+#' @param saveSheet (logical) Whether or not to save the datasheet into the ssimObject, default to TRUE.
+#' @param export (logical) Whether or not to export the datasheet to file, default to FALSE.
+#' @param datasheetFolder (character) The path to where to save the datasheet if export is TRUE, default to NULL.
 #'
 #' @export
 
@@ -8,7 +18,7 @@ subScenario <- function(ssimProject,
                         tag = "default", 
                         datasheetNames,
                         datasheetParameters, 
-                        savesheet=F, 
+                        saveSheet=F, 
                         export=F,
                         datasheetFolder=NULL){
   
@@ -31,7 +41,7 @@ subScenario <- function(ssimProject,
     
     editDatasheet(datasheetName = name, tag = tag, 
                   ssimObject = sce_object, argumentList = datasheetParameters[[name]], 
-                  saveSheet = savesheet, export = export, datasheetFolder = datasheetFolder)
+                  saveSheet = saveSheet, export = export, datasheetFolder = datasheetFolder)
   }
   
   return(sce_object)

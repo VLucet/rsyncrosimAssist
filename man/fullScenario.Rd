@@ -2,10 +2,19 @@
 % Please edit documentation in R/fullScenario.R
 \name{fullScenario}
 \alias{fullScenario}
-\title{Creates Full Scenario based on a datasheet}
+\title{Create Full Scenario based on a set of Sub-Scenario with one or more tag(s)}
 \usage{
-fullScenario(ssimProject, scenarioName, tag_list)
+fullScenario(ssimProject, scenarioName, tag)
+}
+\arguments{
+\item{ssimProject}{(ssimObject) Syncrosim Project to save to.}
+
+\item{scenarioName}{(character) The name of the full scenario.}
+
+\item{tag}{(character or character vector) The tag(s) associated with the subscenarios, can be NULL, 
+default to "default".}
 }
 \description{
-This function will create a unique sub scenario based on a given datasheet.
+Wraps around rsncrosim::scenario in order to Assemble a full scenario from 
+a set of Sub-Scenario with one or more tag(s).
 }

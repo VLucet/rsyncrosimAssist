@@ -2,15 +2,25 @@
 % Please edit documentation in R/loadDatasheet.R
 \name{loadDatasheet}
 \alias{loadDatasheet}
-\title{Allows to edit a datasheet from a given library}
+\title{Load a datasheet into library from CSV}
 \usage{
 loadDatasheet(
   datasheetName,
   tag = "default",
   ssimObject = NULL,
-  datasheetFolder = getwd()
+  datasheetFolder = NULL
 )
 }
+\arguments{
+\item{datasheetName}{(character) The name of the datasheet (ex: RunControl).}
+
+\item{tag}{(character) The tag associated with that datasheet, can be NULL, default to "default".}
+
+\item{ssimObject}{(ssimObject) Object of the class ssimObject from which to extract and}
+
+\item{datasheetFolder}{(character) The path to where to save the datasheet if export is TRUE, default to NULL.}
+}
 \description{
-This function wraps saveDatasheet() and datasheet()
+Wraps rsyncrosim::saveDatasheet() to read in a load into library a datasheet directly
+from a csv file.
 }
