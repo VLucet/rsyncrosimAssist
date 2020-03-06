@@ -15,5 +15,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```r
 require(devtools)
-devtools::install_github("vlucet/rgovcan")
+devtools::install_github("vlucet/rsyncrosimAssist")
 ```
