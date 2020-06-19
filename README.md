@@ -10,5 +10,5 @@ v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/
 
 ``` r
 require(devtools)
-devtools::install_github("vlucet/rgovcan")
+devtools::install_github("vlucet/rsyncrosimAssist")
 ```
